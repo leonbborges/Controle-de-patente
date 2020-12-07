@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
     
     constructor( props ){
         super( props )
-        this.state = { show : true };
+        this.state = { show : false };
         
-        this.Pesquisador= this.Pesquisador.bind(this)
+        //this.Pesquisador= this.Pesquisador.bind(this)
+        this.gestor= this.Pesquisador.bind(this)
     }
     
     Pesquisador= () => {
+        const { show } = this.state;
+        this.setState( { show : !show } )
+    }
+    gestor= () => {
         const { show } = this.state;
         this.setState( { show : !show } )
     }
@@ -21,9 +25,13 @@ class App extends Component {
           <div className="App">
             <div className="App-header">
                 <br />
-                <button onClick={ this.Pesquisador}>Pesquisador</button>
+                <button onClick={this.Pesquisador}>Pesquisador</button>
                 <br /><br />
                 { this.state.show && <Box /> }
+                <br />
+                <button onClick={this.gestor}>gestor</button>
+                <br /><br />
+                { this.state.show && <Boxtow /> }
                 
             </div>
           </div>
@@ -40,7 +48,7 @@ class Box extends Component{
           <div className="form">
             <div className="form-group">
               <label htmlFor="Nome">Nome completo</label>
-              <input type="text" name="Nome completo" placeholder="Nome completo" />
+              <input type="text" name="Nome_completo" placeholder="Nome completo" />
             </div>
             <div className="form-group">
               <label htmlFor="email">Email</label>
@@ -48,11 +56,11 @@ class Box extends Component{
             </div>
             <div className="form-group">
               <label htmlFor="Senha">Senha</label>
-              <input type="text" name="Senha" placeholder="Senha" />
+              <input type="password"  name="Senha" placeholder="Senha" minlength="8" required></input> 
             </div>
              <div className="form-group">
               <label htmlFor="Confirma Senha">Confirma Senha</label>
-              <input type="text" name="Confirma Senha" placeholder="Confirma Senha" />
+              <input type="password" name="Confirma Senha" placeholder="Confirma Senha" minLength="8" />
             </div>
             <div className="form-group">
               <label htmlFor="cpf">cpf</label>
@@ -103,4 +111,11 @@ class Box extends Component{
     }
 }
 
+class Boxtow extends Component{
+    render(){
+        return(
+            <div></div>
+        )
+    }
+}
 export default App;
